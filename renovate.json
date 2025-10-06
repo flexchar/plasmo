@@ -7,11 +7,5 @@
   "git-submodules": {
     "enabled": true
   },
-  "cloneSubmodules": true,
-  "packageRules": [
-    {
-      "matchPackageNames": ["@parcel/**"],
-      "groupName": "parcel packages"
-    }
-  ]
+  "cloneSubmodules": true
 }
