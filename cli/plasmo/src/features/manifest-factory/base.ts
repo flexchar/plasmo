@@ -591,7 +591,7 @@ export abstract class PlasmoManifest<T extends ExtensionManifest = any> {
       return {}
     }
 
-    const output = await this.prepareOverrideManifest()
+    let output = await this.prepareOverrideManifest()
 
     if ((output.web_accessible_resources?.length || 0) > 0) {
       output.web_accessible_resources = await this.resolveWAR(
@@ -619,6 +619,10 @@ export abstract class PlasmoManifest<T extends ExtensionManifest = any> {
       }
     }
 
+    if (output.overrides && output.overrides[this.browser]) {
+      output = { ...output, ...output.overrides[this.browser] }
+    }
+    delete output.overrides
     return this.injectEnvToObj(output)
   }
 
